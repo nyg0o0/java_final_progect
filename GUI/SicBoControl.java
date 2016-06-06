@@ -6,11 +6,17 @@ import javafx.scene.input.KeyCode;
 public class SicBoControl extends Application {
 	@Override // Override the start method in the Application class
 	public void start(Stage primaryStage) {
+		int sceneHeight = 250;
+		int sceneWidth = 500;
+		
+		BetPane bet1 = new BetPane(); 
+		
+		BetPane bet2 = new BetPane(); 
+		bet1.setVisible(false);
+		Scene scene = new Scene(bet1, sceneWidth, sceneHeight);
 
-		BetsPane bet1 = new BetsPane(); // Create a ball pane
-// Create a scene and place it in the stage
-		Scene scene = new Scene(bet1, 250, 150);
-		primaryStage.setTitle("BounceBallControl"); // Set the stage title
+		
+		primaryStage.setTitle("SicBo Game!"); // Set the stage title
 		primaryStage.setScene(scene); // Place the scene in the stage
 		primaryStage.show(); // Display the stage
 
