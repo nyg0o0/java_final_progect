@@ -7,36 +7,19 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 
 public class SicBoControl extends Application {
-    Scene scene1, scene2;
+    Scene scene1;
     Stage thestage;
-    ChoicePane pane1 = new ChoicePane();
-	PlayPane pane2;	
+    ChoicePane pane = new ChoicePane();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 		thestage = primaryStage;
-		//pane1.btnScene1.setOnAction(e-> ButtonClicked(e));
-		pane2 = new PlayPane();
-		
-        scene1 = new Scene(pane1, 500, 500);
-        scene2 = new Scene(pane2, 500, 500);
-        
+        scene1 = new Scene(pane, 500, 500);
         primaryStage.setTitle("SicBo!!!");
         primaryStage.setScene(scene1);
         primaryStage.show();
     }
-	
-	//public void ButtonClicked(ActionEvent e){
-        //if (e.getSource()==pane1.btnScene1)
-			//thestage.setScene(scene2);
-	//		pane1.pane1Visible();
-        //else
-			//thestage.setScene(scene1);
-    //}
-	
-
-
-	
+		
 	public static void main(String[] args) {
 		launch(args);
 	}
