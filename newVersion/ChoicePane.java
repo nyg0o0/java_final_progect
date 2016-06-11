@@ -178,46 +178,46 @@ public class ChoicePane extends Pane {
 					
 				}
 				if(big())
-					resultLabel.setText("Win!!"+ String.valueOf(option));
+					resultLabel.setText("您選賭大 - " + "\n" + "結果: 點數和為" + diceValueSum  + ", 您贏了" + Integer.parseInt(betOfOdds.getText())*1 + "元");
 				else
-					resultLabel.setText("Lose!!"+ String.valueOf(option));
+					resultLabel.setText("您選賭大 - " + "\n" + "結果: 點數和為" + diceValueSum + ", 您輸了" + Integer.parseInt(betOfOdds.getText())*1  + "元");
 				break;
 			case 1:
 				int guess1 = Integer.parseInt(twoDices_1.getValue());
 				int guess2 = Integer.parseInt(twoDices_2.getValue());
 				
 				if(twoDiceCombination(guess1,guess2))
-					resultLabel.setText("Win!!");
+					resultLabel.setText("您選賭兩骰 - 兩骰的點數分別為 " + guess1 + " " + guess2 + "\n" + "結果: 您贏了" + Integer.parseInt(betOfOdds.getText())*8 + "元");
 				else
-					resultLabel.setText("Lose!!");
+					resultLabel.setText("您選賭兩骰 - 兩骰的點數分別為 " + guess1 + " " + guess2 + "\n" + "結果: 您輸了" + Integer.parseInt(betOfOdds.getText())*8 + "元");
 				break;
 	
 			case 2:
 				if(triples())
-					resultLabel.setText("Win!!"+ String.valueOf(option));
+					resultLabel.setText("您選擇賭全骰 - \n" + "結果: 您贏了" + Integer.parseInt(betOfOdds.getText())*5 );
 				else
-					resultLabel.setText("Lose!!"+ String.valueOf(option));
+					resultLabel.setText("全骰 - \n" + "結果: 您輸了" + Integer.parseInt(betOfOdds.getText())*5 );
 				break;
 
 			case 3:
 				if(small())
-					resultLabel.setText("Win!!"+ String.valueOf(option));
+					resultLabel.setText("您選賭小 - " + "\n" + "結果: 點數和為" + diceValueSum  + ", 您贏了" + Integer.parseInt(betOfOdds.getText())*1 + "元");
 				else
-					resultLabel.setText("Lose!!"+ String.valueOf(option));
+					resultLabel.setText("您選賭小 - " + "\n" + "結果: 點數和為" + diceValueSum + ", 您輸了" + Integer.parseInt(betOfOdds.getText())*1 + "元");
 				break;
 			case 4:
 				if(specificDoubles(Integer.parseInt(twoDices_2.getValue())))
-					resultLabel.setText("Win!!" + twoDices_2.getValue());
+					resultLabel.setText("您選賭雙骰 - 雙骰的點數為 " + Integer.parseInt(twoDices_2.getValue()) + "\n" + "您贏了" + Integer.parseInt(betOfOdds.getText())*24 + "元");
 				else
-					resultLabel.setText("Lose!!"+ String.valueOf(twoDices_2.getValue()));
+					resultLabel.setText("您選賭雙骰 - 雙骰的點數為 " + Integer.parseInt(twoDices_2.getValue()) + "\n" + "您輸了" + Integer.parseInt(betOfOdds.getText())*24 + "元");
 				break;
 			
 			case 5:
 				if(specificTriples(Integer.parseInt(threeDices_1.getValue())))
-					resultLabel.setText("Win!!");
+					resultLabel.setText("您選擇賭圍骰 - 圍骰的指定點數為" + Integer.parseInt(threeDices_1.getValue()) + "\n結果: 您贏了" + Integer.parseInt(betOfOdds.getText())*150 );
 				else
-					resultLabel.setText("Lose!!");
-				break;				
+					resultLabel.setText("您選擇賭圍骰 - 圍骰的指定點數為" + Integer.parseInt(threeDices_1.getValue()) + "\n結果: 您輸了" + Integer.parseInt(betOfOdds.getText())*150 );
+				break;	
 			default:
 		}		
 		
@@ -317,9 +317,11 @@ public class ChoicePane extends Pane {
 		btnScene1.setOnMouseClicked(e -> {
 			try {
 				if(Integer.parseInt(betOfOdds.getText())>=0){
+					if(option!=-1){
 					pane1Visible();
 					rollDice();
 					getResult();
+					}
 				}
 			}
 			catch (Exception ex) {
