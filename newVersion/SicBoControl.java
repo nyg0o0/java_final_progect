@@ -10,14 +10,14 @@ public class SicBoControl extends Application {
     Scene scene1, scene2;
     Stage thestage;
     ChoicePane pane1 = new ChoicePane();
-	PlayPane pane2; 	
+	PlayPane pane2;	
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 		thestage = primaryStage;
-		pane1.btnScene1.setOnAction(e-> ButtonClicked(e));
-
-		pane2 = new PlayPane(pane1.getOption(), pane1.twoDices_1.getValue(), pane1.twoDices_2.getValue(), pane1.threeDices_1.getValue());
+		//pane1.btnScene1.setOnAction(e-> ButtonClicked(e));
+		pane2 = new PlayPane();
+		
         scene1 = new Scene(pane1, 500, 500);
         scene2 = new Scene(pane2, 500, 500);
         
@@ -26,13 +26,16 @@ public class SicBoControl extends Application {
         primaryStage.show();
     }
 	
-	public void ButtonClicked(ActionEvent e){
+	//public void ButtonClicked(ActionEvent e){
         //if (e.getSource()==pane1.btnScene1)
-			thestage.setScene(scene2);
-			
+			//thestage.setScene(scene2);
+	//		pane1.pane1Visible();
         //else
 			//thestage.setScene(scene1);
-    }
+    //}
+	
+
+
 	
 	public static void main(String[] args) {
 		launch(args);

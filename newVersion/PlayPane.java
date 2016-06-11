@@ -22,8 +22,8 @@ public class PlayPane extends Pane {
 	int betDice1 = -1;
 	int betDice2 = -1;
 	
-	PlayPane(int option, String twoDices_1, String twoDices_2, String threeDices_1){
-		betOption = option;
+	PlayPane(){
+		//betOption = option;
 		//if(betOption==1||betOption==3){
 		//	betDice1 =  Integer.parseInt(twoDices_1);
 		//	betDice2 =  Integer.parseInt(twoDices_1);
@@ -32,7 +32,7 @@ public class PlayPane extends Pane {
 		//	betDice1 =  Integer.parseInt(twoDices_1);
 		//}
 		//setStyle("-fx-background-color: red;-fx-padding: 10px;");
-		resultLabel.setText(twoDices_1);
+		//resultLabel.setText(String.valueOf(option));
 		allEvent();
 		initialLayout();
 		rollDice();

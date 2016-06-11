@@ -38,7 +38,7 @@ public class ChoicePane extends Pane {
 		initialLayout();
 		choiceBoxLayout();
 		
-		getOption();
+
 		
 	}
 	
@@ -51,7 +51,7 @@ public class ChoicePane extends Pane {
 		//btnScene1.setDisable(true);
 		getChildren().addAll(btnScene1);	
 		for(int i=0 ; i< CHOICE_NUMS ; i++){
-			image[i] = new Image(".\\dicePic\\" + (i+1) + ".png");
+			image[i] = new Image(".\\choicePic\\" + (i+1) + ".png");
 			imageView[i] = new ImageView();
 			imageView[i].setOpacity(1);
 			imageView[i].setImage(image[i]);
@@ -66,11 +66,19 @@ public class ChoicePane extends Pane {
 		helloLabel.setLayoutX(WIDTH/8);
 		helloLabel.setLayoutY(HEIGHT/15);
 		//setStyle("-fx-background-color: tan;-fx-padding: 10px;");
-		getChildren().addAll(helloLabel);		
+		//getChildren().addAll(helloLabel);		
 		
 		allEvent();
 	}
-	
+	public void pane1Visible(){
+		for(int i=0 ; i< CHOICE_NUMS ; i++){
+			imageView[i].setVisible(false);
+		}
+
+		betOfOddsLabel.setVisible(false);
+		betOfOdds.setVisible(false);
+		btnScene1.setVisible(false);
+	}
 	void choiceBoxLayout(){
 		betOfOddsLabel.setLayoutX(WIDTH/8 + (0%3) * (imageView_WIDTH + imageView_GAP));
 		betOfOddsLabel.setLayoutY(HEIGHT/2+ (imageView_WIDTH + imageView_GAP)*(int)(6/3)/3);
@@ -116,7 +124,7 @@ public class ChoicePane extends Pane {
 			twoDices_2.setVisible(true);
 			threeDices_1.setVisible(false);
 		}
-		else if(option==2){
+		else if(option==6){
 			twoDices_1.setVisible(false);
 			twoDices_2.setVisible(false);
 			threeDices_1.setVisible(true);			
@@ -129,8 +137,13 @@ public class ChoicePane extends Pane {
 	}
 	
 	public void allEvent(){
+		btnScene1.setOnMouseClicked(e -> {
+			pane1Visible();
+		});	
 		
 		imageView[0].setOnMouseClicked(e -> {
+			setOption(0);
+			
 			betOfOddsLabel.setText("您選擇賭比大, 賠率為 1:1");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==0){
@@ -139,10 +152,12 @@ public class ChoicePane extends Pane {
 				}
 				imageView[i].setOpacity(0.5);
 			}
-			choiceBoxVisible();
-		});	
-		
-		imageView[1].setOnMouseClicked(e -> {
+			choiceBoxVisible();		
+
+					
+		});		
+		imageView[1].setOnMouseClicked(e -> {	
+			setOption(1);
 			betOfOddsLabel.setText("您選擇賭兩骰, 賠率為 1:8");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==1){
@@ -152,9 +167,12 @@ public class ChoicePane extends Pane {
 				imageView[i].setOpacity(0.5);
 			}
 			choiceBoxVisible();
+
+		
 		});	
 		
 		imageView[2].setOnMouseClicked(e -> {
+			setOption(2);
 			betOfOddsLabel.setText("您選擇賭全骰, 賠率為 1:5");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==2){
@@ -166,6 +184,7 @@ public class ChoicePane extends Pane {
 			choiceBoxVisible();		
 		});	
 		imageView[3].setOnMouseClicked(e -> {
+			setOption(3);
 			betOfOddsLabel.setText("您選擇賭比小, 賠率為 1:1");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==3){
@@ -177,6 +196,7 @@ public class ChoicePane extends Pane {
 			choiceBoxVisible();			
 		});	
 		imageView[4].setOnMouseClicked(e -> {
+			setOption(4);
 			betOfOddsLabel.setText("您選擇賭雙骰, 賠率為 1:24");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==4){
@@ -188,6 +208,7 @@ public class ChoicePane extends Pane {
 			choiceBoxVisible();			
 		});	
 		imageView[5].setOnMouseClicked(e -> {
+			setOption(5);
 			betOfOddsLabel.setText("你選擇賭圍骰, 賠率為 1:150");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==5){
@@ -224,11 +245,7 @@ public class ChoicePane extends Pane {
 	}	
 	
 	int getOption(){
-		for(int i=0 ; i< CHOICE_NUMS-1 ; i++){
-			if( imageView[i].getOpacity()==1 ){
-				option = i;
-			}
-		}
+		
 		return option;
 	}
 	
@@ -254,4 +271,6 @@ public class ChoicePane extends Pane {
 		*/
 	
 	}
+	
+	
 }
