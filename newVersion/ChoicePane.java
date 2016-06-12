@@ -20,14 +20,16 @@ public class ChoicePane extends Pane {
 	int diceValueSum = 0;
 	int[] diceValue = new int[NUM_OF_DICE]; 		
 	int option = -1;
+	int property;
 	
-    final ChoiceBox<String> twoDices_1 = new ChoiceBox<String>(FXCollections.observableArrayList("1", "2", "3", "4", "5","6"));
+    	final ChoiceBox<String> twoDices_1 = new ChoiceBox<String>(FXCollections.observableArrayList("1", "2", "3", "4", "5","6"));
 	final ChoiceBox<String> twoDices_2 = new ChoiceBox<String>(FXCollections.observableArrayList("1", "2", "3", "4", "5","6"));
 	final ChoiceBox<String> threeDices_1 = new ChoiceBox<String>(FXCollections.observableArrayList("1", "2", "3", "4", "5","6"));
 
 	Label resultLabel = new Label();
 	Label helloLabel = new Label();
 	Label betOfOddsLabel = new Label();
+	Label propertyLabel = new Label();
 	TextArea betOfOdds = new TextArea();
 	
 	ImageView choice[] = new ImageView[CHOICE_NUMS];
@@ -43,12 +45,18 @@ public class ChoicePane extends Pane {
 	}
 
 	public void initialLayout(){
-		btnScene1 = new Button("¸Õ¸Õ¹B®ğ§a!!!");
+		property = 5000;
+		propertyLabel.setLayoutX(WIDTH/2 - 80);
+		propertyLabel.setLayoutY(20);
+		propertyLabel.setText("æ‚¨ç¾æœ‰çš„è³‡ç”¢ç‚ºï¼š" + property + "å…ƒ");
+		getChildren().addAll(propertyLabel);
+
+		btnScene1 = new Button("è©¦è©¦é‹æ°£å§!!!");
 		btnScene1.setLayoutX(WIDTH/8 + (0%3) * (imageView_WIDTH + imageView_GAP));
 		btnScene1.setLayoutY(HEIGHT -  (imageView_WIDTH + imageView_GAP)*(int)(6/3)/4);    
 		btnScene1.setPrefWidth( imageView_WIDTH*3 + imageView_GAP*2 );
 		btnScene1.setStyle("-fx-font: 20 arial; -fx-base: 	#6A5ACD;");
-		btnScene2 = new Button("¦A¨Ó¤@¦¸!!!");
+		btnScene2 = new Button("å†ä¾†ä¸€æ¬¡!!!");
 		btnScene2.setLayoutX(WIDTH/8 + (0%3) * (imageView_WIDTH + imageView_GAP));
 		btnScene2.setLayoutY(HEIGHT -  (imageView_WIDTH + imageView_GAP)*(int)(6/3)/4);    
 		btnScene2.setPrefWidth( imageView_WIDTH*3 + imageView_GAP*2 );
@@ -100,21 +108,21 @@ public class ChoicePane extends Pane {
 		betOfOdds.setStyle("-fx-font: 18 arial;");
 		betOfOdds.setPrefWidth(imageView_WIDTH);
 		betOfOdds.setPrefHeight(20);
-		betOfOdds.setPromptText("¤U½äª`!");
+		betOfOdds.setPromptText("ä¸‹è³­æ³¨!");
 		
-		threeDices_1.setTooltip(new Tooltip("¿ï¾Ü³ò»ëªºÂI¼Æ"));
+		threeDices_1.setTooltip(new Tooltip("é¸æ“‡åœéª°çš„é»æ•¸"));
 		threeDices_1.setValue("1");
 		threeDices_1.setLayoutX(WIDTH/8 + (2%3) * (imageView_WIDTH + imageView_GAP));
 		threeDices_1.setLayoutY(HEIGHT/2+ (imageView_WIDTH + imageView_GAP)*(int)(6/3)/2);
 		threeDices_1.setPrefWidth(100);
 		
-		twoDices_1.setTooltip(new Tooltip("¨â»ë¨ä¤¤¤@­ÓÂI¼Æ"));
+		twoDices_1.setTooltip(new Tooltip("å…©éª°å…¶ä¸­ä¸€å€‹é»æ•¸"));
 		twoDices_1.setValue("1");
 		twoDices_1.setLayoutX(WIDTH/8 + (1%3) * (imageView_WIDTH + imageView_GAP));
 		twoDices_1.setLayoutY(HEIGHT/2 + (imageView_WIDTH + imageView_GAP)*(int)(6/3)/2);
 		twoDices_1.setPrefWidth(100);		
 		
-		twoDices_2.setTooltip(new Tooltip("¨â»ë¨ä¤¤¥t¤@­ÓÂI¼Æ"));
+		twoDices_2.setTooltip(new Tooltip("å…©éª°å…¶ä¸­å¦ä¸€å€‹é»æ•¸"));
 		twoDices_2.setValue("1");
 		twoDices_2.setLayoutX(WIDTH/8 + (2%3) * (imageView_WIDTH + imageView_GAP));
 		twoDices_2.setLayoutY(HEIGHT/2 + (imageView_WIDTH + imageView_GAP)*(int)(6/3)/2);
@@ -172,60 +180,100 @@ public class ChoicePane extends Pane {
 	}	
 	
 	void getResult(){
+		resultLabel.setLayoutX(WIDTH/2 - 80);
+		resultLabel.setLayoutY(10);
+
 		switch(getOption()){
 			case 0:
 				if(big()){
 					
 				}
-				if(big())
-					resultLabel.setText("±z¿ï½ä¤j - " + "\n" + "µ²ªG: ÂI¼Æ©M¬°" + diceValueSum  + ", ±zÄ¹¤F" + Integer.parseInt(betOfOdds.getText())*1 + "¤¸");
-				else
-					resultLabel.setText("±z¿ï½ä¤j - " + "\n" + "µ²ªG: ÂI¼Æ©M¬°" + diceValueSum + ", ±z¿é¤F" + Integer.parseInt(betOfOdds.getText())*1  + "¤¸");
+				if(big()){
+					resultLabel.setText("æ‚¨é¸è³­å¤§ - " + "\n" + "çµæœ: é»æ•¸å’Œç‚º" + diceValueSum  + ", æ‚¨è´äº†" + Integer.parseInt(betOfOdds.getText())*1 + "å…ƒ");
+					property = property + Integer.parseInt(betOfOdds.getText())*1 ;
+				}else{	
+					resultLabel.setText("æ‚¨é¸è³­å¤§ - " + "\n" + "çµæœ: é»æ•¸å’Œç‚º" + diceValueSum + ", æ‚¨è¼¸äº†" + Integer.parseInt(betOfOdds.getText())*1  + "å…ƒ");
+					property = property - Integer.parseInt(betOfOdds.getText())*1 ;
+				}
+
 				break;
 			case 1:
 				int guess1 = Integer.parseInt(twoDices_1.getValue());
 				int guess2 = Integer.parseInt(twoDices_2.getValue());
 				
-				if(twoDiceCombination(guess1,guess2))
-					resultLabel.setText("±z¿ï½ä¨â»ë - ¨â»ëªºÂI¼Æ¤À§O¬° " + guess1 + " " + guess2 + "\n" + "µ²ªG: ±zÄ¹¤F" + Integer.parseInt(betOfOdds.getText())*8 + "¤¸");
-				else
-					resultLabel.setText("±z¿ï½ä¨â»ë - ¨â»ëªºÂI¼Æ¤À§O¬° " + guess1 + " " + guess2 + "\n" + "µ²ªG: ±z¿é¤F" + Integer.parseInt(betOfOdds.getText())*8 + "¤¸");
+				if(twoDiceCombination(guess1,guess2)){
+					resultLabel.setText("æ‚¨é¸è³­å…©éª° - å…©éª°çš„é»æ•¸åˆ†åˆ¥ç‚º " + guess1 + " " + guess2 + "\n" + "çµæœ: æ‚¨è´äº†" + Integer.parseInt(betOfOdds.getText())*8 + "å…ƒ");
+					property = property + Integer.parseInt(betOfOdds.getText())*8 ;
+				}else{
+					resultLabel.setText("æ‚¨é¸è³­å…©éª° - å…©éª°çš„é»æ•¸åˆ†åˆ¥ç‚º " + guess1 + " " + guess2 + "\n" + "çµæœ: æ‚¨è¼¸äº†" + Integer.parseInt(betOfOdds.getText())*8 + "å…ƒ");
+					property = property - Integer.parseInt(betOfOdds.getText())*8 ;
+				}
+
 				break;
 	
 			case 2:
-				if(triples())
-					resultLabel.setText("±z¿ï¾Ü½ä¥ş»ë - \n" + "µ²ªG: ±zÄ¹¤F" + Integer.parseInt(betOfOdds.getText())*5 );
-				else
-					resultLabel.setText("¥ş»ë - \n" + "µ²ªG: ±z¿é¤F" + Integer.parseInt(betOfOdds.getText())*5 );
+				if(triples()){
+					resultLabel.setText("æ‚¨é¸æ“‡è³­å…¨éª° - \n" + "çµæœ: æ‚¨è´äº†" + Integer.parseInt(betOfOdds.getText())*5 );
+					property = property + Integer.parseInt(betOfOdds.getText())*5 ;
+				}else{
+					resultLabel.setText("æ‚¨é¸æ“‡è³­å…¨éª° - \n" + "çµæœ: æ‚¨è¼¸äº†" + Integer.parseInt(betOfOdds.getText())*5 );
+					property = property - Integer.parseInt(betOfOdds.getText())*5 ;
+				}
+
 				break;
 
 			case 3:
-				if(small())
-					resultLabel.setText("±z¿ï½ä¤p - " + "\n" + "µ²ªG: ÂI¼Æ©M¬°" + diceValueSum  + ", ±zÄ¹¤F" + Integer.parseInt(betOfOdds.getText())*1 + "¤¸");
-				else
-					resultLabel.setText("±z¿ï½ä¤p - " + "\n" + "µ²ªG: ÂI¼Æ©M¬°" + diceValueSum + ", ±z¿é¤F" + Integer.parseInt(betOfOdds.getText())*1 + "¤¸");
+				if(small()){
+					resultLabel.setText("æ‚¨é¸è³­å° - " + "\n" + "çµæœ: é»æ•¸å’Œç‚º" + diceValueSum  + ", æ‚¨è´äº†" + Integer.parseInt(betOfOdds.getText())*1 + "å…ƒ");
+					property = property + Integer.parseInt(betOfOdds.getText())*1 ;
+				}else{
+					resultLabel.setText("æ‚¨é¸è³­å° - " + "\n" + "çµæœ: é»æ•¸å’Œç‚º" + diceValueSum + ", æ‚¨è¼¸äº†" + Integer.parseInt(betOfOdds.getText())*1 + "å…ƒ");
+					property = property - Integer.parseInt(betOfOdds.getText())*1 ;
+				}
+
 				break;
 			case 4:
-				if(specificDoubles(Integer.parseInt(twoDices_2.getValue())))
-					resultLabel.setText("±z¿ï½äÂù»ë - Âù»ëªºÂI¼Æ¬° " + Integer.parseInt(twoDices_2.getValue()) + "\n" + "±zÄ¹¤F" + Integer.parseInt(betOfOdds.getText())*24 + "¤¸");
-				else
-					resultLabel.setText("±z¿ï½äÂù»ë - Âù»ëªºÂI¼Æ¬° " + Integer.parseInt(twoDices_2.getValue()) + "\n" + "±z¿é¤F" + Integer.parseInt(betOfOdds.getText())*24 + "¤¸");
+				if(specificDoubles(Integer.parseInt(twoDices_2.getValue()))){
+					resultLabel.setText("æ‚¨é¸è³­é›™éª° - é›™éª°çš„é»æ•¸ç‚º " + Integer.parseInt(twoDices_2.getValue()) + "\n" + "æ‚¨è´äº†" + Integer.parseInt(betOfOdds.getText())*24 + "å…ƒ");
+					property = property + Integer.parseInt(betOfOdds.getText())*24 ;
+				}else{
+					resultLabel.setText("æ‚¨é¸è³­é›™éª° - é›™éª°çš„é»æ•¸ç‚º " + Integer.parseInt(twoDices_2.getValue()) + "\n" + "æ‚¨è¼¸äº†" + Integer.parseInt(betOfOdds.getText())*24 + "å…ƒ");
+					property = property - Integer.parseInt(betOfOdds.getText())*24 ;
+				}
+
 				break;
 			
 			case 5:
-				if(specificTriples(Integer.parseInt(threeDices_1.getValue())))
-					resultLabel.setText("±z¿ï¾Ü½ä³ò»ë - ³ò»ëªº«ü©wÂI¼Æ¬°" + Integer.parseInt(threeDices_1.getValue()) + "\nµ²ªG: ±zÄ¹¤F" + Integer.parseInt(betOfOdds.getText())*150 );
-				else
-					resultLabel.setText("±z¿ï¾Ü½ä³ò»ë - ³ò»ëªº«ü©wÂI¼Æ¬°" + Integer.parseInt(threeDices_1.getValue()) + "\nµ²ªG: ±z¿é¤F" + Integer.parseInt(betOfOdds.getText())*150 );
-				break;	
+				if(specificTriples(Integer.parseInt(threeDices_1.getValue()))){
+					resultLabel.setText("æ‚¨é¸æ“‡è³­åœéª° - åœéª°çš„æŒ‡å®šé»æ•¸ç‚º" + Integer.parseInt(threeDices_1.getValue()) + "\nçµæœ: æ‚¨è´äº†" + Integer.parseInt(betOfOdds.getText())*150 );
+					property = property + Integer.parseInt(betOfOdds.getText())*150 ;
+				}else{
+					resultLabel.setText("æ‚¨é¸æ“‡è³­åœéª° - åœéª°çš„æŒ‡å®šé»æ•¸ç‚º" + Integer.parseInt(threeDices_1.getValue()) + "\nçµæœ: æ‚¨è¼¸äº†" + Integer.parseInt(betOfOdds.getText())*150 );
+					property = property - Integer.parseInt(betOfOdds.getText())*150 ;
+				}
+
+				break;
+	
 			default:
 		}		
 		
 		resultLabel.setVisible(true);
+
+		propertyLabel.setLayoutY(40);
+
+		if (property < 0){
+			btnScene2.setDisable(true);
+			propertyLabel.setText("æ‚¨å·²ç¶“ç ´ç”¢!!! ä¸¦ç©æ¬ " + property*(-1) + "å…ƒ");
+		}else if(property == 0){
+			btnScene2.setDisable(true);
+			propertyLabel.setText("æ‚¨å·²ç„¡è³‡ç”¢");
+		}else{
+			propertyLabel.setText("ç›®å‰æ‚¨çš„è³‡ç”¢ç‚ºï¼š" + property + "å…ƒ");
+		}	
 		
 	}
 	
-	//§PÂ_¬O§_¬°¡¦³ò»ë¡¦
+	//åˆ¤æ–·æ˜¯å¦ç‚ºâ€™åœéª°â€™
 	public boolean triples(){
 		if(diceValue[0]==diceValue[1] && diceValue[1]==diceValue[2])
 			return true;
@@ -233,7 +281,7 @@ public class ChoicePane extends Pane {
 			return false;
 	}//end triples
 
-	//§PÂ_¡¦¤j¡¦ªº¿éÄ¹
+	//åˆ¤æ–·â€™å¤§â€™çš„è¼¸è´
 	public boolean big(){
 		if(diceValueSum>=11 && diceValueSum<=17 && triples()==false)
 			return true;
@@ -241,7 +289,7 @@ public class ChoicePane extends Pane {
 			return false;
 	}//end big
 
-	//§PÂ_¡¦¤p¡¦ ¿éÄ¹
+	//åˆ¤æ–·â€™å°â€™ è¼¸è´
 	public boolean small(){
 		if(diceValueSum>=4 && diceValueSum<=10 && triples()==false){
 
@@ -281,7 +329,7 @@ public class ChoicePane extends Pane {
 			return false;
 		}
 	}//end twoDiceCombination
-	//§PÂ_¡¦Âù»ë¡¦ªº¿éÄ¹
+	//åˆ¤æ–·â€™é›™éª°â€™çš„è¼¸è´
 	public boolean specificDoubles(int guessTwo){
 		if(diceValue[0] == guessTwo && diceValue[1] == guessTwo){
 			return true;
@@ -297,7 +345,7 @@ public class ChoicePane extends Pane {
 		}
 	}//end specificDoubles
 	
-	//§PÂ_¡¦³ò»ë¡¦ªº¿éÄ¹
+	//åˆ¤æ–·â€™åœéª°â€™çš„è¼¸è´
 	public boolean specificTriples(int guessThree){
 		if(triples()){
 			if(guessThree==diceValue[0])
@@ -336,7 +384,7 @@ public class ChoicePane extends Pane {
 		imageView[0].setOnMouseClicked(e -> {
 			setOption(0);
 			
-			betOfOddsLabel.setText("±z¿ï¾Ü½ä¤ñ¤j, ½ß²v¬° 1:1");
+			betOfOddsLabel.setText("æ‚¨é¸æ“‡è³­æ¯”å¤§, è³ ç‡ç‚º 1:1");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==0){
 					imageView[i].setOpacity(1);
@@ -350,7 +398,7 @@ public class ChoicePane extends Pane {
 		});		
 		imageView[1].setOnMouseClicked(e -> {	
 			setOption(1);
-			betOfOddsLabel.setText("±z¿ï¾Ü½ä¨â»ë, ½ß²v¬° 1:8");
+			betOfOddsLabel.setText("æ‚¨é¸æ“‡è³­å…©éª°, è³ ç‡ç‚º 1:8");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==1){
 					imageView[i].setOpacity(1);
@@ -365,7 +413,7 @@ public class ChoicePane extends Pane {
 		
 		imageView[2].setOnMouseClicked(e -> {
 			setOption(2);
-			betOfOddsLabel.setText("±z¿ï¾Ü½ä¥ş»ë, ½ß²v¬° 1:5");
+			betOfOddsLabel.setText("æ‚¨é¸æ“‡è³­å…¨éª°, è³ ç‡ç‚º 1:5");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==2){
 					imageView[i].setOpacity(1);
@@ -377,7 +425,7 @@ public class ChoicePane extends Pane {
 		});	
 		imageView[3].setOnMouseClicked(e -> {
 			setOption(3);
-			betOfOddsLabel.setText("±z¿ï¾Ü½ä¤ñ¤p, ½ß²v¬° 1:1");
+			betOfOddsLabel.setText("æ‚¨é¸æ“‡è³­æ¯”å°, è³ ç‡ç‚º 1:1");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==3){
 					imageView[i].setOpacity(1);
@@ -389,7 +437,7 @@ public class ChoicePane extends Pane {
 		});	
 		imageView[4].setOnMouseClicked(e -> {
 			setOption(4);
-			betOfOddsLabel.setText("±z¿ï¾Ü½äÂù»ë, ½ß²v¬° 1:24");
+			betOfOddsLabel.setText("æ‚¨é¸æ“‡è³­é›™éª°, è³ ç‡ç‚º 1:24");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==4){
 					imageView[i].setOpacity(1);
@@ -401,7 +449,7 @@ public class ChoicePane extends Pane {
 		});	
 		imageView[5].setOnMouseClicked(e -> {
 			setOption(5);
-			betOfOddsLabel.setText("§A¿ï¾Ü½ä³ò»ë, ½ß²v¬° 1:150");
+			betOfOddsLabel.setText("ä½ é¸æ“‡è³­åœéª°, è³ ç‡ç‚º 1:150");
 			for(int i=0 ; i< CHOICE_NUMS ; i++){
 				if(i==5){
 					imageView[i].setOpacity(1);
