@@ -14,7 +14,7 @@ public class PlayPane extends Pane {
 	final int HEIGHT = 500;	
 	final int imageView_WIDTH = 100;
 	final int imageView_GAP = 30;	
-    Label resultLabel = new Label();
+    	Label resultLabel = new Label();
 	Button btnScene2 = new Button("再來試試看!");
 	int diceValueSum = 0;
 	int[] diceValue = new int[NUM_OF_DICE]; 	
