@@ -10,6 +10,7 @@ import javafx.scene.image.*;
 import javafx.collections.FXCollections;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.paint.Color;
 public class ChoicePane extends Pane {
 	final int NUM_OF_DICE = 3;	
 	final int CHOICE_NUMS = 6;
@@ -47,8 +48,9 @@ public class ChoicePane extends Pane {
 	public void initialLayout(){
 		property = 5000;
 		propertyLabel.setLayoutX(WIDTH/2 - 80);
-		propertyLabel.setLayoutY(20);
+		propertyLabel.setLayoutY(315);
 		propertyLabel.setText("您現有的資產為：" + property + "元");
+		propertyLabel.setTextFill(Color.web("#0076a3"));
 		getChildren().addAll(propertyLabel);
 
 		btnScene1 = new Button("試試運氣吧!!!");
@@ -181,7 +183,8 @@ public class ChoicePane extends Pane {
 	
 	void getResult(){
 		resultLabel.setLayoutX(WIDTH/2 - 80);
-		resultLabel.setLayoutY(10);
+		resultLabel.setLayoutY(HEIGHT/2);
+		resultLabel.setTextFill(Color.web("#0076a3"));
 
 		switch(getOption()){
 			case 0:
@@ -259,7 +262,7 @@ public class ChoicePane extends Pane {
 		
 		resultLabel.setVisible(true);
 
-		propertyLabel.setLayoutY(40);
+		propertyLabel.setLayoutY(HEIGHT/2 + 30);
 
 		if (property < 0){
 			btnScene2.setDisable(true);
